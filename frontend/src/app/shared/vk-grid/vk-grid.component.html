@@ -1,0 +1,34 @@
+<div class="table-responsive">
+<table class="table table-foo">
+  <colgroup>
+    <col *ngFor="let column of columns" style="max-width: 20%;"/>
+  </colgroup> 
+  <tr>
+    <th *ngFor="let column of columns" (click)="sortBy(column.field)" [class]="column.class">
+      {{column.name}}&nbsp;{{getSortState(column.field)}}
+    </th>
+    <th *ngIf="canDelete"></th>
+  </tr>
+  <tr *ngFor="let row of filtered | paging : pageSize : page" (click)="clicked(row['id'])" >
+    <td *ngFor="let column of columns" [ngSwitch]="column.type" [class]="column.class" (click)="cell($event, row['id'], column.field)">
+      <ng-container *ngSwitchCase="'url'">
+        <a [href]="row[column.field]">{{row[column.field]}}</a>
+      </ng-container>
+      <ng-container *ngSwitchCase="'email'">
+        <a [href]="'mailto:'+row[column.field]">{{row[column.field]}}</a>
+      </ng-container>
+      <ng-container *ngSwitchCase="'mapped'">
+        <span [innerHtml]="column.map[row[column.field]]"></span>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+          <span *ngIf="column.emitclick && row[column.field]">🔗</span> {{row[column.field]}} 
+      </ng-container>
+    </td>
+    <td *ngIf="canDelete"><button class="btn btn-sm btn-danger" (click)="delete($event, row['id'])">X</button></td>
+  </tr>
+</table>
+</div>
+<div [hidden]="filtered.length <= pageSize || hidePager">
+  <ngb-pagination class="d-flex justify-content-center mt-3" [collectionSize]="filtered.length" [(page)]="page" [pageSize]="pageSize"
+    [maxSize]="12" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+</div>

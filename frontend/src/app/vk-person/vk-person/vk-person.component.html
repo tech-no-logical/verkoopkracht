@@ -1,0 +1,67 @@
+<form [formGroup]="personForm">
+
+  <div class="form-group">
+    <label>Aanhef</label>
+    <input type="text" class="form-control" formControlName="salutation">
+  </div>
+
+  <div class="form-group">
+    <label>Voornaam</label>
+    <input type="text" class="form-control" formControlName="firstname">
+  </div>
+
+  <div class="form-group">
+    <label>Tussenvoegsel</label>
+    <input type="text" class="form-control" formControlName="insertion">
+  </div>
+
+  <div class="form-group">
+    <label>Achternaam</label>
+    <input type="text" class="form-control" formControlName="lastname">
+  </div>
+  <div class="form-group">
+    <label>Positie</label>
+    <input type="text" class="form-control" formControlName="position">
+  </div>
+
+  <div class="form-group">
+    <label>Organisatie</label>
+    <app-vk-typeahead formControlName="organization_id" [items]="organizationOptions"></app-vk-typeahead>
+  </div>
+
+
+  <!-- <div class="form-group">
+      <label>Organisatie</label>
+      <input type="text" #orga  formControlName="organization_id" class="form-control" [ngbTypeahead]="search" [inputFormatter]="formatter" [resultFormatter]="formatter" (selectItem)="selectItem($event)"/>
+    </div> -->
+
+  <!-- <div class="form-group">
+    <label>Organisatie</label>
+    <select formControlName="organization_id" class="form-control">
+      <option *ngFor="let opt of organizationOptions" [value]="opt.id">{{opt.name}}</option>
+    </select>
+  </div> -->
+
+  <div class="form-group">
+    <label>Email</label>
+    <input type="text" class="form-control" formControlName="email">
+  </div>
+
+  <div class="form-group">
+    <div formArrayName="phone">
+      <label>Telefoon</label>
+      <div class="form-inline">
+        <ng-container *ngFor="let control of personForm.get('phone').controls; let i=index">
+          <div class="input-group  mr-2 mb-2">
+            <input type="text" [formControlName]="i" class="form-control">
+            <div class="input-group-append">
+              <span class="input-group-text" (click)="delPhone(i)">x</span>
+            </div>
+          </div>
+        </ng-container>
+        <button (click)="addPhone()" class="btn btn-primary mb-2">+</button>
+      </div>
+
+    </div>
+  </div>
+</form>

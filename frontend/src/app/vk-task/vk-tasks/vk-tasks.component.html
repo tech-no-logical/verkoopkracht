@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <form class="form-inline float-right">
+    <label class="form-check-label mr-2"><input class="form-check-input" type="checkbox" [checked]="filter.filters.done!=0"
+        (change)="change('done')" />Klaar</label>    
+    <label class="form-check-label mr-2"><input class="form-check-input" type="checkbox" [checked]="filter.filters.archived!=0"
+        (change)="change('archived')" />Archief</label>
+    <input class="form-control quickfilter" name="quickfilter" [(ngModel)]="filter.quickFilter" type="text" (keyup)="change()" placeholder="Zoek" />
+  </form>
+  <h2>Taken</h2>
+  <app-vk-grid 
+    [pageSize]="pageSize" 
+    [filter]="filter" 
+    [columns]="columnDefs" 
+    [baseSortOrder]="baseSortOrder" 
+    [rows]="tasks"
+    (rowClicked)="rowClicked($event)"     
+    (deleteClicked)="deleteTask($event)"
+    [canDelete]="canDelete"
+    [hidePager]="hidePager"
+    (cellClicked)="cellClicked($event)"
+    >
+  </app-vk-grid>
+    
+  <button *ngIf="size!='sm'" class="btn btn-primary" (click)="addTask()">Nieuwe taak</button>
+</div>

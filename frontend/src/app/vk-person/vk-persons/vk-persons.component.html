@@ -1,0 +1,23 @@
+<div class="container-fluid">
+
+  <form class="form-inline float-right">
+    <input name="quickfilter" class="form-control quickfilter" [(ngModel)]="filter.quickFilter" type="text" (keyup)="change()"
+      placeholder="Zoek" />
+  </form>
+
+  <h2>Personen</h2>
+
+  <app-vk-grid 
+    [filter]="filter" 
+    [columns]="columnDefs" 
+    [baseSortOrder]="baseSortOrder" 
+    [rows]="persons" 
+    [canDelete]="canDelete"
+    [hidePager]="hidePager"
+    (rowClicked)="rowClicked($event)"    
+    (deleteClicked)="deletePerson($event)"
+    (cellClicked)="cellClicked($event)"
+  ></app-vk-grid>
+
+  <button [hidden]="size==='sm'" class="btn btn-primary" (click)="addPerson()">Nieuw persoon</button>
+</div>

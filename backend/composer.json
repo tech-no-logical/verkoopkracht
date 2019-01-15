@@ -1,0 +1,14 @@
+{
+	"name" : "salesforce-be/salesforce-be",
+  "autoload" : {
+    "psr-4" : {
+      "Desk\\VK\\" : [
+        "classes/"
+      ]
+    }
+  },	
+	"require" : {
+		"slim/slim" : "~3.10",
+		"tuupola/slim-jwt-auth" : "^3.1"
+	}
+}

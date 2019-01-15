@@ -1,0 +1,8 @@
+{
+    "env": {
+        "name": "PROD"
+    },
+    "config": {
+        "url": "http://vk.desk.nl"
+    }
+}

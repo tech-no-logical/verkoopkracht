@@ -1,0 +1,14 @@
+<div class="container-fluid">
+
+  <form class="form-inline float-right">
+    <input name="quickfilter" class="form-control quickfilter" [(ngModel)]="filter.quickFilter" type="text" (keyup)="change()"
+      placeholder="Zoek" />
+  </form>
+
+  <h2>Organisaties</h2>
+
+  <app-vk-grid [baseSortOrder]="baseSortOrder" [filter]="filter" [columns]="columnDefs" [rows]="organizations" (rowClicked)="rowClicked($event)"
+    canDelete="true" (deleteClicked)="deleteOrganization($event)"></app-vk-grid>
+
+  <button class="btn btn-primary" (click)="addOrganization()">Nieuwe organisatie</button>
+</div>

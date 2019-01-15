@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <h4 class="modal-title">Notitie</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modalRef.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <app-vk-note #nt [note]="note"></app-vk-note>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modalRef.close(nt.noteForm.value)" [disabled]="nt.noteForm.status!=='VALID'">OK</button>
+    <button type="button" class="btn btn-primary" (click)="modalRef.dismiss()" i18n>Annuleer</button>
+  </div>
+

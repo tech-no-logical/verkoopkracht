@@ -1,0 +1,53 @@
+<form [formGroup]="taskForm">
+
+  <div class="form-group">
+    <label>Naam</label>
+    <input type="text" class="form-control" formControlName="description">
+  </div>
+
+  <div class="form-group">
+    <label>Details</label>
+    <textarea class="form-control" formControlName="details"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>Organisatie</label>
+    <app-vk-typeahead formControlName="organization_id" [items]="organizationOptions"></app-vk-typeahead>
+    <!-- <select formControlName="organization_id" class="form-control">
+      <option *ngFor="let opt of organizationOptions" [value]="opt.id">{{opt.name}}</option>
+    </select> -->
+  </div>
+
+
+
+  <div class="form-group">
+    <label>Persoon</label>
+    <app-vk-typeahead formControlName="person_id" [items]="personOptions"></app-vk-typeahead>
+
+    <!-- <select formControlName="person_id" class="form-control">
+      <option *ngFor="let opt of personOptions" [value]="opt.id">{{opt.name}}</option>
+    </select> -->
+  </div>
+
+  <div class="form-group">
+    <label>Planning</label>
+    <div class="input-group">
+      <input class="form-control" placeholder="yyyy-mm-dd" formControlName="planning" ngbDatepicker #d="ngbDatepicker">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">🗓</button>
+      </div>
+      <!-- <input type="text" class="form-control" formControlName="planning"> -->
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Klaar</label>
+    <input type="checkbox" class="form-control" formControlName="done">
+  </div>
+
+  <div class="form-group">
+    <label>Archief</label>
+    <input type="checkbox" class="form-control" formControlName="archived">
+  </div>
+
+</form>

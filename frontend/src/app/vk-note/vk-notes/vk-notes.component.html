@@ -1,0 +1,16 @@
+<div class="container-fluid">
+
+  <form class="form-inline float-right">
+    <label class="form-check-label mr-2"><input class="form-check-input" type="checkbox" [checked]="filter.filters.archived!=0"
+        (change)="change('archived')" />Archief</label>
+    <input name="quickfilter" class="form-control quickfilter" [(ngModel)]="filter.quickFilter" type="text" (keyup)="change()" placeholder="Zoek" />
+  </form>
+
+  <h2>Notities</h2>
+
+  <app-vk-grid [filter]="filter" [pageSize]="pageSize" [baseSortOrder]="baseSortOrder" [columns]="columnDefs" [rows]="notes" [hidePager]="hidePager"
+    (rowClicked)="rowClicked($event)" [canDelete]="canDelete" (deleteClicked)="deleteNote($event)" (cellClicked)="cellClicked($event)"></app-vk-grid>
+
+  <button [hidden]="size==='sm'" class="btn btn-primary" (click)="addNote()">Nieuwe notitie</button>
+
+</div>

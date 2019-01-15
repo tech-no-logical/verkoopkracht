@@ -1,0 +1,43 @@
+<ng-container *ngIf="organization">
+  <div class="container-fluid">
+
+    <div class="row mb-2">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">            
+            <h2>Organisatie</h2>
+            <app-vk-organization #orga [organization]="organization"></app-vk-organization>
+            <div class="float-right">
+              <button class="btn btn-primary mr-2" (click)="saveOrganization()">Opslaan</button>
+              <button class="btn btn-danger" (click)="deleteOrganization()">Verwijderen</button>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <app-vk-persons [organization_id]="organization.id"></app-vk-persons>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6" style="overflow: hidden;">
+        <div class="card">
+          <div class="card-body">
+            <app-vk-tasks [pageSize]="7" [organization_id]="organization.id"></app-vk-tasks>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6" style="overflow: hidden;">
+        <div class="card">
+          <div class="card-body">
+            <app-vk-notes [pageSize]="7" [organization_id]="organization.id"></app-vk-notes>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ng-container>

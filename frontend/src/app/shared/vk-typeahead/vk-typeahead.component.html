@@ -1,0 +1,5 @@
+<div [formGroup]="aheadForm">
+  <input #ss type="text"  formControlName="aheadItem" 
+  class="form-control" [ngbTypeahead]="search" [resultFormatter]="formatter" (selectItem)="selectItem($event)" [editable]="false" [inputFormatter]="formatter" [resultFormatter]="formatter" />
+</div>
+<!-- {{aheadForm.value | json }} -->
